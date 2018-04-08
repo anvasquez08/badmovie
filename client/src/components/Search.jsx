@@ -14,7 +14,7 @@ class Search extends React.Component {
   }
 
   componentDidMount() {
-    this.getGenres()
+    // this.getGenres()
   }
 
   getGenres() {  
@@ -34,7 +34,6 @@ class Search extends React.Component {
 
         <button onClick={this.props.swapFavorites}>{this.props.showFaves ? "Show Results" : "Show Favorites"}</button>
         <br/><br/>
-
 
         <select value={this.state.value} onChange={this.handleChange}>
               {

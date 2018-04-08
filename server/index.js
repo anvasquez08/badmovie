@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request')
 var axios = require('axios')
-
+var helpers = require('./database.js')
 
 var app = express();
 app.use(express.static(__dirname + '/../client/dist'));
@@ -19,14 +19,14 @@ app.post('/search', function(req, res) {
     	var data = response.data.results;
 
     	for (var i = 0; i < data.length; i++) {
-    	var obj = {};
-    	obj.genre_ids = data[i].genre_ids 
-    	obj.id 				= data[i].id
-    	obj.title			= data[i].title
-    	obj.poster_path = data[i].poster_path
-    	obj.release_date = data[i].release_date
-    	obj.vote_average = data[i].vote_average
-    	arr.push(obj)
+	    	var obj = {};
+	    	obj.genre_ids   = data[i].genre_ids 
+	    	obj.id 				  = data[i].id
+	    	obj.title			  = data[i].title
+	    	obj.poster_path = data[i].poster_path
+	    	obj.release_date = data[i].release_date
+	    	obj.vote_average = data[i].vote_average
+	    	arr.push(obj)
     	}
 
     	res.send(arr)
@@ -42,7 +42,15 @@ app.get('/genres', function(req, res) {
 })
 
 app.post('/save', function(req, res) {
+	console.log(req.body)
 
+	helpers.getAllFavorites((err, data) => {
+		console.log(err)
+		console.log(data)
+		res.send(data)
+	})
+
+	// res.send('post for /save request')
 })
 
 app.post('/delete', function(req, res) {

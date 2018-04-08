@@ -22,15 +22,11 @@ class App extends React.Component {
   }
 
   getMovies(genreId) {
-    //make an axios request to your server on the GET SEARCH endpoint
     axios.post('/search', {id: genreId})
     .then((response) => {
-      // let movieResult = response.data.results
-      console.log(response.data)
-      // this.setState({
-        // movies: [{deway: "videos"}]
-        // )}
-
+      let movieResult = response.data
+      // console.log(movieResult)
+      this.setState({ movies: response.data })
     })
     .catch((err) => console.log(err))
 
