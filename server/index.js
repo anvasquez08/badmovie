@@ -42,20 +42,30 @@ app.get('/genres', function(req, res) {
 })
 
 app.post('/save', function(req, res) {
-	console.log(req.body)
+	helpers.saveFavorite(req, (err, data) => {
 
-	helpers.getAllFavorites((err, data) => {
-		console.log(err)
-		console.log(data)
-		res.send(data)
+		if (err) console.log(err)
+			else {
+				helpers.getAllFavorites((err, data) => {
+					res.send(data)
+				})
+			}
 	})
 
-	// res.send('post for /save request')
 })
 
 app.post('/delete', function(req, res) {
+	helpers.deleteFavorites(req, (err, data) => {
+		if (err) console.log(err)
+			else {
+				helpers.getAllFavorites( (err, data) => {
+					res.send(data)
+				})
+			}
+	})
 
 })
+
 app.listen(3000, function() {
   console.log('listening on port 3000!');
 });
