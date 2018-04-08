@@ -20,13 +20,13 @@ class Movies extends React.Component {
   render() {
     return (
         <ul className="movies">
-{/*
+{
 
 
-    Make this to be dynamic
+    /*Make this to be dynamic*/
 
 
-*/}
+}
           <li className="movie_item">
             <img src="https://lh3.googleusercontent.com/97gnjRiv2zIRnDupzfxYFoI-6zlIK3jKgb6KOCDf_tjWkY9epbITdSFIbiKhuccOqQ=w300"/>
             <div className="movie_description">
@@ -175,5 +175,7 @@ class Movies extends React.Component {
         </ul>)
   }
 }
+
+
 
 export default Movies
