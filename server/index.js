@@ -20,7 +20,7 @@ app.post('/search', function(req, res) {
 
     	for (var i = 0; i < data.length; i++) {
 	    	var obj = {};
-	    	obj.genre_ids   = data[i].genre_ids 
+	    	// obj.genre_ids   = data[i].genre_ids 
 	    	obj.id 				  = data[i].id
 	    	obj.title			  = data[i].title
 	    	obj.poster_path = data[i].poster_path
@@ -42,26 +42,26 @@ app.get('/genres', function(req, res) {
 })
 
 app.post('/save', function(req, res) {
-	helpers.saveFavorite(req, (err, data) => {
 
+	helpers.saveFavorite(req, (err, data) => {
 		if (err) console.log(err)
-			else {
-				helpers.getAllFavorites((err, data) => {
-					res.send(data)
-				})
-			}
+		res.send(data)
 	})
+})
+
+app.get('/showFavorites', function(req, res) {
+	console.log('in here')
+	console.log(req)
+	helpers.getAllFavorites((err, data) => {
+			res.send(data)
+		})
 
 })
 
 app.post('/delete', function(req, res) {
 	helpers.deleteFavorites(req, (err, data) => {
 		if (err) console.log(err)
-			else {
-				helpers.getAllFavorites( (err, data) => {
-					res.send(data)
-				})
-			}
+		res.send(data)
 	})
 
 })
